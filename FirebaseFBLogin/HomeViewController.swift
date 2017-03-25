@@ -17,26 +17,23 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var imageProfilePic: UIImageView!
 
     @IBOutlet weak var profileName: UILabel!
-    @IBAction func didTapLougout(_ sender: Any) {
-        // sign the user out of the Firebase app
-        try! FIRAuth.auth()!.signOut()
-        
-        // sign the user out of the facebook app
-        FBSDKAccessToken.setCurrent(nil)
-        
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginView")
-        self.present(viewController, animated: true, completion: nil)
-        
-    }
+
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         self.imageProfilePic.layer.cornerRadius = self.imageProfilePic.frame.size.width/2
         
         self.imageProfilePic.clipsToBounds = true
         
+        getFacebookUserInfo()
+        
+    }
+    
+    func getFacebookUserInfo() {
+        
         if let user = FIRAuth.auth()?.currentUser {
+            
             // User is signed in.
             // ...
             // The user's ID, unique to the Firebase project.
@@ -45,6 +42,7 @@ class HomeViewController: UIViewController {
             let name = user.displayName
             let email = user.email
             let uid = user.uid
+            
             let photoURL = user.photoURL
             
             self.profileName.text = name
@@ -56,19 +54,17 @@ class HomeViewController: UIViewController {
             
             // This is equivalent to creating the full reference
             let storageRef = storage.reference(forURL: "gs://fir-fblogin-394e8.appspot.com")
-
+            
             // Create a reference to the file you want to download
             let profilePicRef = storageRef.child(user.uid+"/profile_pic.jpg");
-            
             
             // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
             profilePicRef.data( withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
                 if(error != nil) {
                     
                     print("Unable to download image")
-                    
-                    
-                } else {
+                }
+                else {
                     
                     if(data != nil) {
                         
@@ -79,65 +75,54 @@ class HomeViewController: UIViewController {
             }
             
             if(self.imageProfilePic.image == nil) {
-            
-            
-            var profilePic = FBSDKGraphRequest(graphPath: "/me/picture", parameters: ["height": 300, "width": 300, "redirect": false], httpMethod: "GET")
-            
-            profilePic?.start(completionHandler: {(FBSDKGraphRequestConnection, result, error) -> Void in
-            
-                // Handle the result
-            
-            if(error == nil) {
                 
-                let dictionary = result as? NSDictionary
-                let data = dictionary?.object(forKey: "data")
-                let urlPic = ((data as AnyObject).object(forKey:"url"))! as! String
-                if let imageData = NSData(contentsOf: NSURL(string:urlPic)! as URL) {
-                    let profilePicRef = storageRef.child(user.uid+"/profile_pic.jpg")
-                    
-                    let uploadTask = profilePicRef.put(imageData as Data, metadata:nil) {
-                        metadata, error in
+                var profilePic = FBSDKGraphRequest(graphPath: "/me/picture", parameters: ["height": 300, "width": 300, "redirect": false], httpMethod: "GET")
+                
+                profilePic?.start(completionHandler: {(FBSDKGraphRequestConnection, result, error) -> Void in
+                    // Handle the result
+                    if(error == nil) {
                         
-                        if(error == nil) {
+                        let dictionary = result as? NSDictionary
+                        let data = dictionary?.object(forKey: "data")
+                        let urlPic = ((data as AnyObject).object(forKey:"url"))! as! String
+                        if let imageData = NSData(contentsOf: NSURL(string:urlPic)! as URL) {
+                            let profilePicRef = storageRef.child(user.uid+"/profile_pic.jpg")
                             
-                            let downloadUrl = metadata!.downloadURL
+                            let uploadTask = profilePicRef.put(imageData as Data, metadata:nil) {
+                                metadata, error in
+                                
+                                if(error == nil) {
+                                    
+                                    let downloadUrl = metadata!.downloadURL
+                                }
+                                else {
+                                    print("Error in downloading image")
+                                }
+                            }
+                            self.imageProfilePic.image = UIImage(data:imageData as Data)
                         }
-                        else {
-                            print("Error in downloading image")
-                        }
+                        print(result!)
                     }
-                    self.imageProfilePic.image = UIImage(data:imageData as Data)
-                    
-                }
-                
-                print(result!)
+                })
             }
-        })
-        
-        
-            }
-
         }
         else {
             // No user is signed in.
             // ...
         }
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func didTapLougout(_ sender: Any) {
+        
+        // sign the user out of the Firebase app
+        try! FIRAuth.auth()!.signOut()
+        
+        // sign the user out of the facebook app
+        FBSDKAccessToken.setCurrent(nil)
+        
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginView")
+        self.present(viewController, animated: true, completion: nil)
+        
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

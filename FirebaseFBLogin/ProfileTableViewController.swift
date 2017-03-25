@@ -12,10 +12,13 @@ import FirebaseDatabase
 
 class ProfileTableViewController: UITableViewController {
 
-    var about = ["Gender", "Age", "Home", "Email", "Website", "Bio"]
+    var about = ["Gender", "Age", "Home", "Email", "Website", "Bio", "Phone"]
 
     var user = User.sharedInstance
     var ref: FIRDatabaseReference!
+    
+    var userID : String = ""
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,45 +45,27 @@ class ProfileTableViewController: UITableViewController {
         
         //we run a while loop when user clicks update
         // loop over all the textfield and take out all the data and send it to firebase DB
-
-        
         var index = 0
         while index < about.count {
-            let indexPath = NSIndexPath(row: index, section: 0)
             
+            let indexPath = NSIndexPath(row: index, section: 0)
             let cell: TextInputTableView? = (self.tableView.cellForRow(at: indexPath as IndexPath) as! TextInputTableView)
             
-            //if user
-
-            
             if cell?.myTextField.text != "" {
-                
-                
-                var userID : String
-                
+            
                 if let data = UserDefaults.standard.object(forKey: "uid") as? String {
-                
                     userID = data
-                    //print(data)
-                
                 }
+                    
                 else {
                     print("There is an issue")
                 }
-                
-                    
-                    //UserDefaults.standard.set("(userName.text!)", forKey: "UID")
-                //UserDefaults.standard.object(forKey: "uid") as? String
-
-                    
-                
-                
+            
                 let item:String = (cell?.myTextField.text!)!
-     
                 
                 //let userID: String = user.current!.uid
-                userID = user.current!.uid
-                
+               
+                //userID = user.current!.uid
                 
                 switch about[index] {
                     
@@ -134,7 +119,6 @@ class ProfileTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return about.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:TextInputTableView = tableView.dequeueReusableCell(withIdentifier: "TextInput", for: indexPath) as! TextInputTableView
