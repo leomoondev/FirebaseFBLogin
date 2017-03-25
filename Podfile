@@ -7,6 +7,7 @@ target 'FirebaseFBLogin' do
   pod 'Firebase'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
+  pod 'Firebase/Database'
   # Pods for FirebaseFBLogin
 
 

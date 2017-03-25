@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2lU-xB-30X">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -36,7 +36,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--Home View Controller-->
+        <!--Home-->
         <scene sceneID="fFY-Mm-eOj">
             <objects>
                 <viewController storyboardIdentifier="HomeView" id="xXh-9o-OiU" customClass="HomeViewController" customModule="FirebaseFBLogin" customModuleProvider="target" sceneMemberID="viewController">
@@ -85,6 +85,7 @@
                             <constraint firstItem="lmT-7D-sfb" firstAttribute="top" secondItem="7TU-mc-C02" secondAttribute="bottom" constant="7.5" id="uOY-4F-HLK"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="note-11" id="YZh-Gg-Vvn"/>
                     <connections>
                         <outlet property="imageProfilePic" destination="7TU-mc-C02" id="VVj-al-i6f"/>
                         <outlet property="profileName" destination="lmT-7D-sfb" id="RHx-ov-CuH"/>
@@ -92,7 +93,99 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zOH-NW-dxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="769" y="121"/>
+            <point key="canvasLocation" x="1708" y="120.98950524737631"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="eO9-Za-71K">
+            <objects>
+                <tabBarController storyboardIdentifier="TabBarControllerView" automaticallyAdjustsScrollViewInsets="NO" id="2lU-xB-30X" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="anx-Ga-S1k">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="xXh-9o-OiU" kind="relationship" relationship="viewControllers" id="CFr-eh-Q54"/>
+                        <segue destination="dwr-kh-b2h" kind="relationship" relationship="viewControllers" id="NlK-ne-rhq"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EUQ-Aa-YvV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="768.79999999999995" y="120.98950524737631"/>
+        </scene>
+        <!--Edit Profile-->
+        <scene sceneID="a96-oH-iYg">
+            <objects>
+                <tableViewController id="AHj-Kb-ng3" customClass="ProfileTableViewController" customModule="FirebaseFBLogin" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6f4-6O-zmk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TextInput" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextInput" id="yrm-9k-ws0" customClass="TextInputTableView" customModule="FirebaseFBLogin" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yrm-9k-ws0" id="ZPY-hy-YJ2">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4FZ-E0-mdC">
+                                            <rect key="frame" x="8" y="5" width="359" height="30"/>
+                                            <nil key="textColor"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="4FZ-E0-mdC" firstAttribute="top" secondItem="ZPY-hy-YJ2" secondAttribute="top" constant="5" id="6UH-iO-uhR"/>
+                                        <constraint firstAttribute="trailing" secondItem="4FZ-E0-mdC" secondAttribute="trailing" constant="8" id="dAi-ZA-mQQ"/>
+                                        <constraint firstItem="4FZ-E0-mdC" firstAttribute="leading" secondItem="ZPY-hy-YJ2" secondAttribute="leading" constant="8" id="lJo-4O-AJJ"/>
+                                        <constraint firstAttribute="bottom" secondItem="4FZ-E0-mdC" secondAttribute="bottom" constant="8" id="pCc-Ce-y8C"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="myTextField" destination="4FZ-E0-mdC" id="yWG-X9-Jg1"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="AHj-Kb-ng3" id="3Of-i2-0NF"/>
+                            <outlet property="delegate" destination="AHj-Kb-ng3" id="L0Y-Ag-SjV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Edit Profile" id="9aD-tg-j0D">
+                        <barButtonItem key="rightBarButtonItem" title="Update" id="jUE-2m-6yX">
+                            <connections>
+                                <action selector="didTapUpdate:" destination="AHj-Kb-ng3" id="V78-eo-aCD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rEE-a3-kZp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2424.8000000000002" y="869.41529235382313"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="YFb-Vy-bh2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dwr-kh-b2h" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="paperclip" id="XeQ-Db-UmE"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ccF-px-H1S">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="AHj-Kb-ng3" kind="relationship" relationship="rootViewController" id="XU9-ud-GQs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GFQ-ak-bcd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1485.5999999999999" y="869.41529235382313"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="note-11" width="15" height="15"/>
+        <image name="paperclip" width="15" height="15"/>
+    </resources>
 </document>

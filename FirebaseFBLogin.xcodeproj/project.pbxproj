@@ -19,6 +19,9 @@
 		DA67C62F1E8460840013E002 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA67C62B1E8460840013E002 /* FBSDKLoginKit.framework */; };
 		DA67C6301E8460840013E002 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA67C62C1E8460840013E002 /* FBSDKShareKit.framework */; };
 		DA67C6321E847A4E0013E002 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA67C6311E847A4E0013E002 /* HomeViewController.swift */; };
+		DAB732EE1E85E0CF0013BC64 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB732ED1E85E0CF0013BC64 /* User.swift */; };
+		DAC65C9E1E859F090070F0BA /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC65C9D1E859F090070F0BA /* ProfileTableViewController.swift */; };
+		DAC65CA01E859FEA0070F0BA /* TextInputTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC65C9F1E859FEA0070F0BA /* TextInputTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,10 @@
 		DA67C62B1E8460840013E002 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		DA67C62C1E8460840013E002 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		DA67C6311E847A4E0013E002 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		DAB732ED1E85E0CF0013BC64 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DAC65C9D1E859F090070F0BA /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		DAC65C9F1E859FEA0070F0BA /* TextInputTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputTableView.swift; sourceTree = "<group>"; };
+		DAC65CA11E85C2380070F0BA /* FirebaseFBLogin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FirebaseFBLogin.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,16 +105,60 @@
 		DA67C6141E845D270013E002 /* FirebaseFBLogin */ = {
 			isa = PBXGroup;
 			children = (
-				DA67C6151E845D270013E002 /* AppDelegate.swift */,
-				DA67C6171E845D270013E002 /* ViewController.swift */,
-				DA67C6191E845D270013E002 /* Main.storyboard */,
+				DAC65CA11E85C2380070F0BA /* FirebaseFBLogin.entitlements */,
+				DAC65C6E1E8576E50070F0BA /* Controller */,
+				DAC65C6D1E8576E10070F0BA /* View */,
+				DAC65C6C1E8576DC0070F0BA /* Model */,
+				DAC65C6B1E8576D60070F0BA /* AppDelegate */,
+				DAC65C6A1E8576D00070F0BA /* UI */,
 				DA67C61C1E845D270013E002 /* Assets.xcassets */,
-				DA67C61E1E845D270013E002 /* LaunchScreen.storyboard */,
 				DA67C6211E845D270013E002 /* Info.plist */,
 				DA67C6271E845D600013E002 /* GoogleService-Info.plist */,
-				DA67C6311E847A4E0013E002 /* HomeViewController.swift */,
+				DAC65C9F1E859FEA0070F0BA /* TextInputTableView.swift */,
 			);
 			path = FirebaseFBLogin;
+			sourceTree = "<group>";
+		};
+		DAC65C6A1E8576D00070F0BA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				DA67C6191E845D270013E002 /* Main.storyboard */,
+				DA67C61E1E845D270013E002 /* LaunchScreen.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		DAC65C6B1E8576D60070F0BA /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				DA67C6151E845D270013E002 /* AppDelegate.swift */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		DAC65C6C1E8576DC0070F0BA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DAB732ED1E85E0CF0013BC64 /* User.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		DAC65C6D1E8576E10070F0BA /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		DAC65C6E1E8576E50070F0BA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DA67C6311E847A4E0013E002 /* HomeViewController.swift */,
+				DA67C6171E845D270013E002 /* ViewController.swift */,
+				DAC65C9D1E859F090070F0BA /* ProfileTableViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,6 +198,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = WV7WWTD5PV;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -235,8 +291,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAC65CA01E859FEA0070F0BA /* TextInputTableView.swift in Sources */,
 				DA67C6181E845D270013E002 /* ViewController.swift in Sources */,
+				DAB732EE1E85E0CF0013BC64 /* User.swift in Sources */,
 				DA67C6161E845D270013E002 /* AppDelegate.swift in Sources */,
+				DAC65C9E1E859F090070F0BA /* ProfileTableViewController.swift in Sources */,
 				DA67C6321E847A4E0013E002 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,6 +418,7 @@
 			baseConfigurationReference = CD5C5670A1656A897DC3EC61 /* Pods-FirebaseFBLogin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FirebaseFBLogin/FirebaseFBLogin.entitlements;
 				DEVELOPMENT_TEAM = WV7WWTD5PV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -377,6 +437,7 @@
 			baseConfigurationReference = 63C120B3DD6EEB4CECB7BB8D /* Pods-FirebaseFBLogin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FirebaseFBLogin/FirebaseFBLogin.entitlements;
 				DEVELOPMENT_TEAM = WV7WWTD5PV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

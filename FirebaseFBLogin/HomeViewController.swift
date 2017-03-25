@@ -12,6 +12,8 @@ import FirebaseAuth
 import FirebaseStorage
 
 class HomeViewController: UIViewController {
+    var currentUser = User.sharedInstance
+    
     @IBOutlet weak var imageProfilePic: UIImageView!
 
     @IBOutlet weak var profileName: UILabel!

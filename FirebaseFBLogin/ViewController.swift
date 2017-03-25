@@ -17,7 +17,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
      - Parameter result: The results of the login
      - Parameter error: The error (if any) from the login
      */
-
+    let globalUser = User.sharedInstance
 
 
     var loginButton: FBSDKLoginButton = FBSDKLoginButton()
@@ -33,7 +33,9 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                 // User is signed in
                 // Move the user to the home screen
                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let homeViewController: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "HomeView")
+                let homeViewController:UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "TabBarControllerView")
+                self.globalUser.current = user
+                
                 self.present(homeViewController, animated: true, completion: nil)
     
             }
@@ -77,7 +79,9 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
             
             FIRAuth.auth()?.signIn(with: credential) { (user, error) in
                 // ...
+                UserDefaults.standard.set(FIRAuth.auth()!.currentUser!.uid, forKey: "uid")
                 
+                UserDefaults.standard.synchronize()
                 print("User logged in to Firebase App!")
                 
             }
